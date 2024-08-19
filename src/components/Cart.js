@@ -3,7 +3,7 @@ import { CartContext } from '../global/CartContext';
 import { Navbar } from './Navbar';
 import { IoIosAdd, IoIosRemove, IoIosTrashOutline } from 'react-icons/io';
 import { Link, useHistory } from 'react-router-dom';
-import { auth } from '../Config/Config';
+import { auth } from '../config/Config';
 
 export const Cart = () => {
   const { shoppingCart, dispatch, TotalPrice, totalQty } = useContext(CartContext);
@@ -12,9 +12,7 @@ export const Cart = () => {
   return (
     <div>
       <Navbar user={auth.currentUser} />
-      
       {shoppingCart.length === 0 && <h1>Cart</h1>}
-      
       <div className="cart-container">
         {shoppingCart.length === 0 && (
           <div>
@@ -22,27 +20,29 @@ export const Cart = () => {
             <Link to="/">Return to Home page</Link>
           </div>
         )}
-        
+
         {shoppingCart.length > 0 && shoppingCart.map(cart => (
           <div className="cart-card" key={cart.ProductID}>
-            <div className="cart-card-details">
-              <span className="cart-card-name">{cart.ProductName}</span>
-              <span className="cart-card-price">Rs {cart.ProductPrice}.00</span>
+            <div className="cart-img">
+              <img src={cart.ProductImg} alt="not found" />
             </div>
-            <div className="cart-card-quantity">
-              <span className="cart-card-qty">Qty: {cart.qty}</span>
-              <button className="cart-card-qty-btn" onClick={() => dispatch({ type: 'INC', id: cart.ProductID })}>
-                <IoIosAdd size={24} />
-              </button>
-              <button className="cart-card-qty-btn" onClick={() => dispatch({ type: 'DEC', id: cart.ProductID })}>
-                <IoIosRemove size={24} />
-              </button>
+            <div className="cart-name">{cart.ProductName}</div>
+            <div className="cart-price-original">
+              Rs {cart.ProductPrice}.00
             </div>
-            <div className="cart-card-delete">
-              <button className="cart-card-delete-btn" onClick={() => dispatch({ type: 'DELETE', id: cart.ProductID })}>
-                <IoIosTrashOutline size={24} />
-              </button>
+            <div className="inc" onClick={() => dispatch({ type: 'INC', id: cart.ProductID, cart })}>
+              <IoIosAdd size={24} />
             </div>
+            <div className="quantity">{cart.qty}</div>
+            <div className="dec" onClick={() => dispatch({ type: 'DEC', id: cart.ProductID, cart })}>
+              <IoIosRemove size={24} />
+            </div>
+            <div className="cart-price">
+              Rs {cart.TotalProductPrice}.00
+            </div>
+            <button className="delete-btn" onClick={() => dispatch({ type: 'DELETE', id: cart.ProductID, cart })}>
+              <IoIosTrashOutline size={24} />
+            </button>
           </div>
         ))}
       </div>
