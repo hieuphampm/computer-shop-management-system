@@ -1,10 +1,10 @@
-import React,{useContext} from 'react'
-import { ProductsContext } from '../global/ProductsContext'
-
+import React, { useContext } from 'react';
+import { ProductsContext } from '../global/ProductsContext';
+import { Link } from 'react-router-dom';
 
 export const Products = () => {
 
-    const {products} = useContext(ProductsContext);
+    const { products } = useContext(ProductsContext);
     console.log(products);
 
     return (
@@ -22,12 +22,14 @@ export const Products = () => {
                         </div>
                         <div className='product-price'>
                             {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.ProductPrice)}
-                        </div>
-                        <button className='addcart-btn' >ADD TO CART</button>
+                        </div>                        
+                        <Link to={`/product/${product.ProductID}`} className='details-link'>Details</Link>
+                        <button className='addcart-btn'>ADD TO CART</button>
                     </div>
                 ))}
             </div>
         </>
-    )
-}
-export default Products
+    );
+};
+
+export default Products;

@@ -20,7 +20,8 @@ export class ProductsContextProvider extends React.Component {
                     ProductID: doc.id,
                     ProductName: doc.data().ProductName,
                     ProductPrice: doc.data().ProductPrice,
-                    ProductImg: doc.data().ProductImg
+                    ProductImg: doc.data().ProductImg,
+                    Category: doc.data().Category 
                 });
             });
             this.setState({ products });
