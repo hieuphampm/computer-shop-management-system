@@ -8,7 +8,7 @@ const AddProduct = () => {
     const [productName, setProductName] = useState('');
     const [productPrice, setProductPrice] = useState(0);
     const [productImg, setProductImg] = useState(null);
-    const [category, setCategory] = useState('laptop'); // Thêm category
+    const [category, setCategory] = useState('laptop'); 
     const [error, setError] = useState('');
 
     const types = ['image/png', 'image/jpeg'];
@@ -51,13 +51,12 @@ const AddProduct = () => {
                         ProductName: productName,
                         ProductPrice: Number(productPrice),
                         ProductImg: url,
-                        Category: category // Lưu cả category vào Firestore
+                        Category: category 
                     });
-                    console.log("Document written with ID: ", docRef.id);
                     setProductName('');
                     setProductPrice(0);
                     setProductImg(null);
-                    setCategory('laptop'); // Reset category về mặc định
+                    setCategory('laptop'); 
                     setError('');
                     document.getElementById('file').value = '';
                 } catch (error) {

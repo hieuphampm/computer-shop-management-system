@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 export const Products = () => {
 
     const { products } = useContext(ProductsContext);
-    console.log(products);
 
     return (
         <>

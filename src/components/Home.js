@@ -3,19 +3,19 @@ import '../css/Home.css';
 import { Navbar } from '../components/Navbar';
 import { Products } from '../components/Products';
 import { auth } from '../config/Config';
-import { useNavigate  } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export const Home = ({ user }) => {
-  const history = useNavigate();
+  const navigate = useNavigate();  
 
   useEffect(() => {
-    // Forcing user to login
+ 
     auth.onAuthStateChanged(user => {
       if (!user) {
-        history.push('/login');
+        navigate('/login'); 
       }
     });
-  }, [history]);
+  }, [navigate]);  
 
   return (
     <div className="wrapper">
@@ -24,4 +24,5 @@ export const Home = ({ user }) => {
     </div>
   );
 };
-export default Home
+
+export default Home;

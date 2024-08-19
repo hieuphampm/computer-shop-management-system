@@ -1,38 +1,35 @@
-import React, { createContext } from 'react';
-import { getFirestore, collection, onSnapshot } from "firebase/firestore";
+import React, { createContext, useState, useEffect } from 'react';
+import { getFirestore, collection, onSnapshot } from 'firebase/firestore';
 
 export const ProductsContext = createContext();
 
-export class ProductsContextProvider extends React.Component {
+export const ProductsContextProvider = ({ children }) => {
+    const [products, setProducts] = useState([]);
 
-    state = {
-        products: []
-    }
+    useEffect(() => {
+        const firestore = getFirestore();
+        const productsCollection = collection(firestore, 'Products');
 
-    componentDidMount() {
-        const firestore = getFirestore();  
-        const productsCollection = collection(firestore, 'Products');  
-
-        onSnapshot(productsCollection, snapshot => {
-            const products = [];
-            snapshot.forEach(doc => {
-                products.push({
+        const unsubscribe = onSnapshot(productsCollection, (snapshot) => {
+            const productsArray = [];
+            snapshot.forEach((doc) => {
+                productsArray.push({
                     ProductID: doc.id,
                     ProductName: doc.data().ProductName,
                     ProductPrice: doc.data().ProductPrice,
                     ProductImg: doc.data().ProductImg,
-                    Category: doc.data().Category 
+                    Category: doc.data().Category // Lưu cả thông tin Category
                 });
             });
-            this.setState({ products });
+            setProducts(productsArray);
         });
-    }
 
-    render() {
-        return (
-            <ProductsContext.Provider value={{ products: this.state.products }}>
-                {this.props.children}
-            </ProductsContext.Provider>
-        );
-    }
-}
+        return () => unsubscribe();
+    }, []);
+
+    return (
+        <ProductsContext.Provider value={{ products }}>
+            {children}
+        </ProductsContext.Provider>
+    );
+};
