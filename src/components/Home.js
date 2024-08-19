@@ -3,10 +3,10 @@ import '../css/Home.css';
 import { Navbar } from '../components/Navbar';
 import { Products } from '../components/Products';
 import { auth } from '../config/Config';
-import { useHistory } from 'react-router-dom';
+import { useNavigate  } from 'react-router-dom';
 
 export const Home = ({ user }) => {
-  const history = useHistory();
+  const history = useNavigate();
 
   useEffect(() => {
     // Forcing user to login
@@ -24,3 +24,4 @@ export const Home = ({ user }) => {
     </div>
   );
 };
+export default Home

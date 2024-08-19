@@ -9,12 +9,10 @@ export const Signup = (props) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const Signup = (e) => {
+  const handleSignup = (e) => {
     e.preventDefault();
-    // console.log('form submitted');
-    // console.log(name, email, password);
     auth.createUserWithEmailAndPassword(email, password).then((cred) => {
-      db.Collection('SignedUpUsersData').doc(cred.user.uid).set({
+      db.collection('SignedUpUsersData').doc(cred.user.uid).set({
         Name: name,
         Email: email,
         Password: password
@@ -28,14 +26,11 @@ export const Signup = (props) => {
     }).catch(err => setError(err.message));
   };
 
-
-};
-
-return (
+  return (
     <div className="container">
       <h2>Sign Up</h2>
       <hr />
-      <form autoComplete="off" className="form-group" onSubmit={Signup}>
+      <form autoComplete="off" className="form-group" onSubmit={handleSignup}>
         <br />
         <label htmlFor="Name">Name</label>
         <input 
@@ -75,4 +70,6 @@ return (
       </span>
     </div>
   );
-  
+};
+
+export default Signup

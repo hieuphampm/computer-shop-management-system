@@ -1,12 +1,12 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import logo from '../images/ecommerce.svg';
+import { Link, useNavigate } from 'react-router-dom';
+import logo from '../images/logo.svg';
 import { Icon } from 'react-icons-kit';
 import { cart } from 'react-icons-kit/entypo/cart';
 import { auth } from '../config/Config';
 
 export const Navbar = ({ user }) => {
-  const history = useHistory();
+  const history = useNavigate();
 
   const logout = () => {
     auth.signOut().then(() => {

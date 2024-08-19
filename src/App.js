@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AddProduct from "./components/AddProduct";
 import ProductDetails from "./components/ProductDetails";
-import Home from './components/Home'; // Chỉ giữ lại một lần khai báo Home
+import Home from './components/Home';
 import Login from './components/Login';
 import { ProductsContextProvider } from "./global/ProductsContext";
 import { auth, db } from './config/Config';
