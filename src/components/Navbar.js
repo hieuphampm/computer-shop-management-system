@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import logo from '../images/logo.svg'; // Updated to use logo.svg
+import logo from '../images/logo.svg'; // Using the logo.svg file
 import { Icon } from 'react-icons-kit';
 import { cart } from 'react-icons-kit/entypo/cart';
 import { auth } from '../config/Config';

@@ -1,13 +1,20 @@
 import React, { useContext } from 'react';
-import { CartContext } from '../global/CartContext';
 import { ProductsContext } from '../global/ProductsContext';
+import { Link, useNavigate } from 'react-router-dom';
+import { auth } from '../config/Config';
 
-export const Products = () => {
-
+export const Products = ({ user }) => {
   const { products } = useContext(ProductsContext);
-  const { dispatch } = useContext(CartContext);
+  const navigate = useNavigate();
 
-  console.log(products);
+  const handleAddToCart = (product) => {
+    if (user) {
+      // Logic để thêm sản phẩm vào giỏ hàng
+      console.log('Product added to cart:', product);
+    } else {
+      navigate('/login');
+    }
+  };
 
   return (
     <>
@@ -25,12 +32,8 @@ export const Products = () => {
             <div className='product-price'>
               {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.ProductPrice)}
             </div>
-            <button 
-              className='addcart-btn' 
-              onClick={() => dispatch({ type: 'ADD_TO_CART', id: product.ProductID, product })}
-            >
-              Add to Cart
-            </button>
+            <Link to={`/product/${product.ProductID}`} className='details-link'>Details</Link>
+            <button className='addcart-btn' onClick={() => handleAddToCart(product)}>ADD TO CART</button>
           </div>
         ))}
       </div>

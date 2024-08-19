@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"; 
 import { storage, db } from '../config/Config';
-
+import { collection, addDoc } from 'firebase/firestore'; 
 
 const AddProduct = () => {
 
     const [productName, setProductName] = useState('');
     const [productPrice, setProductPrice] = useState(0);
     const [productImg, setProductImg] = useState(null);
+    const [category, setCategory] = useState('laptop'); 
     const [error, setError] = useState('');
 
     const types = ['image/png', 'image/jpeg'];
@@ -22,30 +24,46 @@ const AddProduct = () => {
         }
     };
 
-    const addProduct = (e) => {
+    const addProduct = async (e) => {
         e.preventDefault();
-        // console.log(productName, productPrice, productImg);
-        const uploadTask = storage.ref(`product-images/${productImg.name}`).put(productImg);
-        uploadTask.on('state_changed', snapshot => {
-            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log(progress);
-        }, error => {
-            setError(error.message);
-        }, () => {
-            storage.ref('product-images').child(productImg.name).getDownloadURL().then(url => {
-                db.collection('Products').add({
-                    ProductName: productName,
-                    ProductPrice: Number(productPrice),
-                    ProductImg: url
-                }).then(() => {
+
+        if (!productImg) {
+            setError("Please select an image first!");
+            return;
+        }
+
+        // Sử dụng category để xác định folder lưu ảnh
+        const storageRef = ref(storage, `${category}/${productImg.name}`);
+        const uploadTask = uploadBytesResumable(storageRef, productImg);
+
+        uploadTask.on('state_changed', 
+            (snapshot) => {
+                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log(progress);
+            }, 
+            (error) => {
+                setError(error.message);
+            }, 
+            async () => {
+                try {
+                    const url = await getDownloadURL(uploadTask.snapshot.ref);
+                    const docRef = await addDoc(collection(db, 'Products'), {
+                        ProductName: productName,
+                        ProductPrice: Number(productPrice),
+                        ProductImg: url,
+                        Category: category 
+                    });
                     setProductName('');
                     setProductPrice(0);
-                    setProductImg('');
+                    setProductImg(null);
+                    setCategory('laptop'); 
                     setError('');
                     document.getElementById('file').value = '';
-                }).catch(error => setError(error.message));
-            });
-        });
+                } catch (error) {
+                    setError(error.message);
+                }
+            }
+        );
     };
 
     return (
@@ -63,6 +81,15 @@ const AddProduct = () => {
                 <br />
                 <input type="number" className='form-control' required
                     onChange={(e) => setProductPrice(e.target.value)} value={productPrice} />
+                <br />
+                <label htmlFor="category">Category</label>
+                <br />
+                <select className='form-control' value={category} onChange={(e) => setCategory(e.target.value)}>
+                    <option value="laptop">Laptop</option>
+                    <option value="pc">PC</option>
+                    <option value="hardware">Hardware</option>
+                    <option value="tablet">Tablet</option>
+                </select>
                 <br />
                 <label htmlFor='product-img'>Product Image</label>
                 <br />
