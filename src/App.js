@@ -1,13 +1,13 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import AddProduct from "./components/AddProduct";
 import { ProductsContextProvider } from "./global/ProductsContext";
-import Signup from './components/Signup';  // Importing as default exports
-import Login from './components/Login';   // Importing as default exports
+import Signup from './components/Signup'; // Assuming Signup is exported as default
+import Login from './components/Login';   // Assuming Login is exported as default
 import { auth, db } from './config/Config';
 
-export class App extends Component {
+class App extends Component {
 
   state = {
     user: null
@@ -33,14 +33,16 @@ export class App extends Component {
     return (
       <ProductsContextProvider>
         <BrowserRouter>
-          <Switch>
-            <Route exact path='/' component={() => <Home user={this.state.user} />} />
-            <Route path='/addproducts' component={AddProducts} />
-            <Route path='/signup' component={Signup} />
-            <Route path='/login' component={Login} />
-          </Switch>
+          <Routes>
+            <Route exact path="/" element={<Home user={this.state.user} />} />
+            <Route path='/addproducts' element={<AddProduct />} />
+            <Route path='/signup' element={<Signup />} />
+            <Route path='/login' element={<Login />} />
+          </Routes>
         </BrowserRouter>
       </ProductsContextProvider>
     );
   }
 }
+
+export default App;

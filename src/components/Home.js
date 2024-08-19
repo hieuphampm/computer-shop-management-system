@@ -3,19 +3,18 @@ import '../css/Home.css';
 import { Navbar } from '../components/Navbar';
 import { Products } from '../components/Products';
 import { auth } from '../config/Config';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';  // Updated to useNavigate
 
 export const Home = ({ user }) => {
-  const history = useHistory();
+  const navigate = useNavigate();  // Updated to useNavigate
 
   useEffect(() => {
-    // Forcing user to login
     auth.onAuthStateChanged(user => {
       if (!user) {
-        history.push('/login');
+        navigate('/login');  // Updated to useNavigate
       }
     });
-  }, [history]);
+  }, [navigate]);  // Updated dependency array to use navigate
 
   return (
     <div className="wrapper">
@@ -24,3 +23,5 @@ export const Home = ({ user }) => {
     </div>
   );
 };
+
+export default Home;

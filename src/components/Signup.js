@@ -1,52 +1,31 @@
-import React, { useState } from 'react'
-import { auth, db } from '../config/Config';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { auth } from '../config/Config';
 
-export const Signup = (props) => {
-  // defining state using useState hook
-  const [name, setName] = useState('');
+export const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate(); // Replacing history with useNavigate
 
-  const Signup = (e) => {
+  const signup = (e) => {
     e.preventDefault();
-    // console.log('form submitted');
-    // console.log(name, email, password);
-    auth.createUserWithEmailAndPassword(email, password).then((cred) => {
-      db.Collection('SignedUpUsersData').doc(cred.user.uid).set({
-        Name: name,
-        Email: email,
-        Password: password
-      }).then(() => {
-        setName('');
+    auth.createUserWithEmailAndPassword(email, password)
+      .then(() => {
         setEmail('');
         setPassword('');
         setError('');
-        props.history.push('/login');
-      }).catch(err => setError(err.message));
-    }).catch(err => setError(err.message));
+        navigate('/'); // Navigate to home page after signup
+      })
+      .catch(err => setError(err.message));
   };
 
-
-};
-
-return (
+  return (
     <div className="container">
       <h2>Sign Up</h2>
-      <hr />
-      <form autoComplete="off" className="form-group" onSubmit={Signup}>
-        <br />
-        <label htmlFor="Name">Name</label>
-        <input 
-          type="text" 
-          className="form-control" 
-          required 
-          onChange={(e) => setName(e.target.value)} 
-          value={name} 
-        />
-        <br />
-        <label htmlFor="Email">Email</label>
+      <br />
+      <form autoComplete="off" className="form-group" onSubmit={signup}>
+        <label htmlFor="email">Email</label>
         <input 
           type="email" 
           className="form-control" 
@@ -55,7 +34,7 @@ return (
           value={email} 
         />
         <br />
-        <label htmlFor="Password">Password</label>
+        <label htmlFor="password">Password</label>
         <input 
           type="password" 
           className="form-control" 
@@ -64,15 +43,17 @@ return (
           value={password} 
         />
         <br />
-        <button type="submit" className="btn btn-success btn-md mybtn">
+        <button 
+          type="submit" 
+          className="btn btn-success btn-md mybtn">
           REGISTER
         </button>
       </form>
-      {error && <div className='error-msg'>{error}</div>}
-      
-      <span>Already have an account? Login
-        <Link to="/login"> here</Link>
-      </span>
+      {error && <span className="error-msg">{error}</span>}
+      <br />
+      <span>Already have an account? <Link to="/login">Login here</Link></span>
     </div>
   );
-  
+}
+
+export default Signup;
