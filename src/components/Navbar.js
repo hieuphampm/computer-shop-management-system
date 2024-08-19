@@ -1,33 +1,31 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import logo from '../images/logo.svg';
+import logo from '../images/logo.svg'; // Using the logo.svg file
 import { Icon } from 'react-icons-kit';
 import { cart } from 'react-icons-kit/entypo/cart';
 import { auth } from '../config/Config';
 
 export const Navbar = ({ user }) => {
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const logout = () => {
     auth.signOut().then(() => {
-      history.push('/login');
+      navigate('/login');
     });
   };
 
   return (
     <div className="navbox">
       <div className="leftside">
-        <img src={logo} alt="" />
+        <img src={logo} alt="logo" />  {/* Updated alt text to "logo" */}
       </div>
       <div className="rightside">
-        {/* If we don't have any user */}
         {!user && (
           <>
             <Link to="/signup" className="navlinks">SIGN UP</Link>
             <Link to="/login" className="navlinks">LOGIN</Link>
           </>
         )}
-        {/* If we have a user */}
         {user && (
           <>
             <span>
@@ -47,3 +45,5 @@ export const Navbar = ({ user }) => {
     </div>
   );
 };
+
+export default Navbar;

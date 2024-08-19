@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import AddProduct from "./components/AddProduct";
 import ProductDetails from "./components/ProductDetails";
-import { ProductsContextProvider } from "./global/ProductsContext";
 import Signup from './components/Signup';  
 import Login from './components/Login';   
+import { ProductsContextProvider } from "./global/ProductsContext";
 
 export class App extends Component {
   render() {

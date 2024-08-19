@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../config/Config';
 
-export const Login = (props) => {
+export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const login = (e) => {
     e.preventDefault();
-    auth.signInWithEmailAndPassword(email, password).then(() => {
+    auth.signInWithEmailAndPassword(email, password)
+      .then(() => {
         setEmail('');
         setPassword('');
         setError('');
-        props.history.push('/');
-    }).catch(eer => setError(eer.message));
+        navigate('/'); // Redirect to home page after successful login
+      })
+      .catch(err => setError(err.message));
   }
 
   return (
@@ -49,7 +52,7 @@ export const Login = (props) => {
       {error && <span className='error-msg'>{error}</span>}
       <br />
       <span>Don’t have an account? Register 
-        <Link to="signup"> Here</Link>
+        <Link to="/signup"> Here</Link>
       </span>
     </div>
   );
