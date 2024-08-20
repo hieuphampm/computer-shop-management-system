@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import logo from '../images/logo.svg'; // Using the logo.svg file
+import logo from '../images/logo.svg';
 import { Icon } from 'react-icons-kit';
 import { cart } from 'react-icons-kit/entypo/cart';
 import { auth } from '../config/Config';
@@ -17,7 +17,9 @@ export const Navbar = ({ user }) => {
   return (
     <div className="navbox">
       <div className="leftside">
-        <img src={logo} alt="logo" />  {/* Updated alt text to "logo" */}
+        <Link to="/">  
+          <img src={logo} alt="logo" />  
+        </Link>
       </div>
       <div className="rightside">
         {!user && (

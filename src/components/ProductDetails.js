@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { ProductsContext } from '../global/ProductsContext';
 import { useParams } from 'react-router-dom';
+import Navbar from './Navbar'; // Importing Navbar component
 
 export const ProductDetails = () => {
     const { products } = useContext(ProductsContext);
@@ -8,12 +9,23 @@ export const ProductDetails = () => {
     const product = products.find(prod => prod.ProductID === id);
 
     return (
-        <div className='product-details'>
-            <h2>{product.ProductName}</h2>
-            <img src={product.ProductImg} alt={product.ProductName} />
-            <p>Price: {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.ProductPrice)}</p>
-            <p>Category: {product.Category}</p>
-        </div>
+        <>
+            <Navbar user={null} /> 
+            <div className='product-details-container'>
+                <div className='product-image'>
+                    <img src={product.ProductImg} alt={product.ProductName} />
+                </div>
+                <div className='product-info'>
+                    <h2 className='product-title'>{product.ProductName}</h2>
+                    <p className='product-price'>Price: {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.ProductPrice)}</p>
+                    <p className='product-category'>Category: {product.Category}</p>
+                    <div className='btn-container'>
+                        <button className="btn-primary">Add to Cart</button>
+                        <button className="btn-secondary">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </>
     );
 };
 
