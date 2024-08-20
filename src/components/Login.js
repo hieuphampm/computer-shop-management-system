@@ -15,7 +15,7 @@ export const Login = () => {
         setEmail('');
         setPassword('');
         setError('');
-        navigate('/'); 
+        navigate('/'); // Redirect to home page after successful login
       })
       .catch(err => setError(err.message));
   }

@@ -7,6 +7,7 @@ import { ProductsContextProvider } from "./global/ProductsContext";
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Cart from './components/Cart';
+import { Cashout } from './components/Cashout';
 
 export class App extends Component {
   render() {
@@ -19,7 +20,8 @@ export class App extends Component {
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/cartproducts" element={<Cart />} />
+            <Route path="/cartproducts" element={<Cart user={this.state.user} />} />
+            <Route path='/cashout' Component={()=><Cashout user={this.state.user}/>}/>
           </Routes>
         </BrowserRouter>
       </ProductsContextProvider>
