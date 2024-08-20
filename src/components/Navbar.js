@@ -17,9 +17,7 @@ export const Navbar = ({ user }) => {
   return (
     <div className="navbox">
       <div className="leftside">
-        <Link to="/">  
-          <img src={logo} alt="logo" />  
-        </Link>
+        <img src={logo} alt="logo" onClick={() => navigate('/')} /> {/* Navigates to Home */}
       </div>
       <div className="rightside">
         {!user && (

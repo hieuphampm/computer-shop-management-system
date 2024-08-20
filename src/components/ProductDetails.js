@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { ProductsContext } from '../global/ProductsContext';
 import { useParams } from 'react-router-dom';
-import Navbar from './Navbar'; // Importing Navbar component
+import Navbar from './Navbar';
+        
 
 export const ProductDetails = () => {
     const { products } = useContext(ProductsContext);
