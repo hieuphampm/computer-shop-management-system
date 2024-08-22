@@ -1,27 +1,29 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { auth, db } from '../config/Config';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { db } from '../config/Config';
 
 export const Signup = () => {
-  const [name, setName] = useState(''); // Added missing state for name
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate(); // Replacing history with useNavigate
+  const navigate = useNavigate();
+  const auth = getAuth(); // Initialize auth
 
   const handleSignup = (e) => {
     e.preventDefault();
-    auth.createUserWithEmailAndPassword(email, password).then((cred) => {
+    createUserWithEmailAndPassword(auth, email, password).then((cred) => {
       db.collection('SignedUpUsersData').doc(cred.user.uid).set({
         Name: name,
         Email: email,
         Password: password
       }).then(() => {
-        setName(''); // Clearing the name input after signup
+        setName('');
         setEmail('');
         setPassword('');
         setError('');
-        navigate('/'); // Navigate to home page after signup
+        navigate('/');
       })
       .catch(err => setError(err.message));
     })

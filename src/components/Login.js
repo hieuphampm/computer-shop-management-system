@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { auth } from '../config/Config';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth"; // Import Firebase auth
 
 export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const auth = getAuth(); // Initialize auth
 
   const login = (e) => {
     e.preventDefault();
-    auth.signInWithEmailAndPassword(email, password)
+    signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         setEmail('');
         setPassword('');
         setError('');
-        navigate('/'); // Redirect to home page after successful login
+        navigate('/');
       })
       .catch(err => setError(err.message));
   }
