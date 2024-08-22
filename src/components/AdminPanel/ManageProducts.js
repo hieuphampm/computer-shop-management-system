@@ -128,7 +128,7 @@ const ManageProducts = () => {
             {error && <span>{error}</span>}
             
             <br />
-            <h2>Search and Manage Products</h2>
+            <h2>Manage Products</h2>
             <hr />
             <div className='search-container'>
                 <input 
