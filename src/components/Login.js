@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../config/Config';
+import Navbar from './Navbar';
 
 export const Login = () => {
   const [email, setEmail] = useState('');
@@ -21,39 +22,36 @@ export const Login = () => {
   }
 
   return (
-    <div className="container">
-      <h2>Login</h2>
-      <br />
-      <form autoComplete="off" className="form-group" onSubmit={login}>
-        <label htmlFor="email">Email</label>
-        <input 
-          type="email" 
-          className="form-control" 
-          required 
-          onChange={(e) => setEmail(e.target.value)} 
-          value={email} 
-        />
-        <br />
-        <label htmlFor="password">Password</label>
-        <input 
-          type="password" 
-          className="form-control" 
-          required 
-          onChange={(e) => setPassword(e.target.value)} 
-          value={password} 
-        />
-        <br />
-        <button 
-          type="submit" 
-          className="btn btn-success btn-md mybtn">
-          LOGIN
-        </button>
-      </form>
-      {error && <span className='error-msg'>{error}</span>}
-      <br />
-      <span>Don’t have an account? Register 
-        <Link to="/signup"> Here</Link>
-      </span>
+    <div>
+      <Navbar />
+      <div className="login-container">
+        <h2>Login</h2>
+        <form autoComplete="off" className="form-group" onSubmit={login}>
+          <label htmlFor="email">Email</label>
+          <input 
+            type="email" 
+            required 
+            onChange={(e) => setEmail(e.target.value)} 
+            value={email} 
+          />
+          <label htmlFor="password">Password</label>
+          <input 
+            type="password" 
+            required 
+            onChange={(e) => setPassword(e.target.value)} 
+            value={password} 
+          />
+          <button 
+            type="submit" 
+            className="btn btn-success">
+            LOGIN
+          </button>
+        </form>
+        {error && <span className='error-msg'>{error}</span>}
+        <span>Don’t have an account? Register 
+          <Link to="/signup"> Here</Link>
+        </span>
+      </div>
     </div>
   );
 }

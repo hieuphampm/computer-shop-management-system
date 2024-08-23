@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth, db } from '../config/Config';
+import Navbar from './Navbar';
 
 export const Signup = () => {
-  const [name, setName] = useState(''); // Added missing state for name
+  const [name, setName] = useState(''); 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate(); // Replacing history with useNavigate
+  const navigate = useNavigate(); 
 
   const handleSignup = (e) => {
     e.preventDefault();
@@ -17,11 +18,11 @@ export const Signup = () => {
         Email: email,
         Password: password
       }).then(() => {
-        setName(''); // Clearing the name input after signup
+        setName(''); 
         setEmail('');
         setPassword('');
         setError('');
-        navigate('/'); // Navigate to home page after signup
+        navigate('/'); 
       })
       .catch(err => setError(err.message));
     })
@@ -29,46 +30,41 @@ export const Signup = () => {
   };
 
   return (
-    <div className="container">
-      <h2>Sign Up</h2>
-      <br />
-      <form autoComplete="off" className="form-group" onSubmit={handleSignup}>
-        <label htmlFor="Name">Name</label>
-        <input 
-          type="text" 
-          className="form-control" 
-          required 
-          onChange={(e) => setName(e.target.value)} 
-          value={name} 
-        />
-        <br />
-        <label htmlFor="Email">Email</label>
-        <input 
-          type="email" 
-          className="form-control" 
-          required 
-          onChange={(e) => setEmail(e.target.value)} 
-          value={email} 
-        />
-        <br />
-        <label htmlFor="Password">Password</label>
-        <input 
-          type="password" 
-          className="form-control" 
-          required 
-          onChange={(e) => setPassword(e.target.value)} 
-          value={password} 
-        />
-        <br />
-        <button 
-          type="submit" 
-          className="btn btn-success btn-md mybtn">
-          REGISTER
-        </button>
-      </form>
-      {error && <span className="error-msg">{error}</span>}
-      <br />
-      <span>Already have an account? <Link to="/login">Login here</Link></span>
+    <div>
+      <Navbar />
+      <div className="signup-container">
+        <h2>Sign Up</h2>
+        <form autoComplete="off" className="form-group" onSubmit={handleSignup}>
+          <label htmlFor="Name">Name</label>
+          <input 
+            type="text" 
+            required 
+            onChange={(e) => setName(e.target.value)} 
+            value={name} 
+          />
+          <label htmlFor="Email">Email</label>
+          <input 
+            type="email" 
+            required 
+            onChange={(e) => setEmail(e.target.value)} 
+            value={email} 
+          />
+          <label htmlFor="Password">Password</label>
+          <input 
+            type="password" 
+            required 
+            onChange={(e) => setPassword(e.target.value)} 
+            value={password} 
+          />
+          <button 
+            type="submit" 
+            className="btn btn-success">
+            REGISTER
+          </button>
+        </form>
+        {error && <span className="error-msg">{error}</span>}
+        <span>Already have an account? <Link to="/login">Login here</Link></span>
+      </div>
     </div>
   );
 };

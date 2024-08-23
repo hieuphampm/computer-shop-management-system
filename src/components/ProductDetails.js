@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { ProductsContext } from '../global/ProductsContext';
 import { useParams } from 'react-router-dom';
 import Navbar from './Navbar';
-        
 
 export const ProductDetails = () => {
     const { products } = useContext(ProductsContext);
@@ -11,7 +10,7 @@ export const ProductDetails = () => {
 
     return (
         <>
-            <Navbar user={null} /> 
+            <Navbar user={null} />
             <div className='product-details-container'>
                 <div className='product-image'>
                     <img src={product.ProductImg} alt={product.ProductName} />

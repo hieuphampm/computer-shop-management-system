@@ -5,9 +5,13 @@ import { Products } from '../components/Products';
 
 export const Home = ({ user }) => {
   return (
-    <div className="wrapper">
-      <Navbar user={user} />
+    <div>
+    <Navbar user={user} />
+    
+    <div className="home-wrapper">
+      
       <Products user={user} />
+    </div>
     </div>
   );
 };
