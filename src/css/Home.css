@@ -1,195 +1,204 @@
-.wrapper {
-    overflow-x: hidden;
-    overflow-y: auto;
+/* Global Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
 }
 
-/* navbar */
-.navbox{
-    width: 100%;
+/* Navbar */
+.navbox {
+    width: 100%; 
     height: auto;
-    border-bottom: 1px solid #00338D; /**e4e4e4**/
+    border-bottom: 1px solid #00338D;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 7px 25px;
+    background-color: #f4f4f4;
 }
-.navbox .leftside{
+
+.navbox .leftside {
     width: 80px;
     height: 80px;
 }
 
-.navbox .leftside img{
+.navbox .leftside img {
     width: 100%;
     height: 100%;
+    cursor: pointer;
 }
-.navbox .rightside{
+
+.navbox .rightside {
     display: flex;
     flex-direction: row;
 }
-.navbox .rightside .navlinks{
-    font-size: 12px;
+
+.navbox .rightside .navlinks {
+    font-size: 14px;
     color: #000;
     font-weight: 600;
     margin: auto 10px;
-}
-
-.navbox .rightside .relative {
-    position: relative;
-}
-
-
-.navbox .rightside .relative .no-of-products {
-    background: #f57224;
-    color: #fff;
-    font-size: 10px;
-    font-weight: 600;
-    padding: 2px;
-    width: 14px;
-    height: 14px;
-    border-radius: 3px;
-    position: absolute;
-    top: -5px;
-    right: 4px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* products */
-
-h1 {
-    padding: 30px;
-    border-bottom: 1px solid #e4e4e4;
-    font-family: 'Roboto', sans-serif;
-    color: #333;
     text-transform: uppercase;
-    letter-spacing: 2px;
 }
 
-/* Media query cho thiết bị di động */
-@media(max-width: 768px) {
-    h1 {
-        text-align: center;
-        padding: 10px;
-        font-size: 24px;
-    }
-}
-
-/* Container chứa sản phẩm */
-.products-container {
-    display: flex;
-    justify-content: center;
-    align-items: stretch; 
-    padding: 20px;
-    flex-wrap: wrap;
-    gap: 30px;
-    background-color: #f4f4f4; /**00338D**/
-}
-/* Thẻ chứa từng sản phẩm */
-.products-container .product-card {
-    width: 280px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; 
-    align-items: center;
-    font-size: 14px;
-    font-weight: 600;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
-    background-color: #fff;
-    transition: transform 0.3s, box-shadow 0.3s;
-    position: relative;
-    min-height: 400px; 
-}
-
-.products-container .product-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-/* Hình ảnh sản phẩm */
-.products-container .product-card .product-img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%; 
-    height: 200px;
-    background-color: #f9f9f9;
-    padding: 10px;
-    border-bottom: 1px solid #e4e4e4;
-}
-
-.products-container .product-card .product-img img {
-    max-width: 100%; 
-    max-height: 100%; 
-    object-fit: contain;
-    transition: transform 0.3s;
-}
-
-.products-container .product-card:hover .product-img img {
-    transform: scale(1.1);
-}
-
-/* Tên sản phẩm */
-.products-container .product-card .product-name {
-    display: block;
-    width: 100%;
-    color: #333;
-    margin-top: 15px;
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    text-transform: capitalize;
-}
-
-/* Giá sản phẩm */
-.products-container .product-card .product-price {
-    width: 100%;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    font-family: 'Roboto', sans-serif;
-    font-size: 18px;
-    color: #17a2b8;
-}
-
-/* Nút thêm vào giỏ hàng */
-.products-container .product-card .addcart-btn {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    padding: 12px 16px;
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: background-color 0.3s, transform 0.3s;
-    border-radius: 0 0 10px 10px;
-}
-
-.products-container .product-card .addcart-btn:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
-}
-
-.logout-btn {
+.navbox .rightside .logout-btn {
     padding: 5px;
     border-radius: 3px;
     color: #fff;
     font-size: 12px;
     font-weight: 600;
     cursor: pointer;
-    outline: none;
-    border: hidden;
-    background-color: #2eca8b;
+    background-color: #007bff;
+    border: none;
     margin-left: 10px;
+    text-transform: uppercase;
 }
 
+.navbox .rightside .logout-btn:hover {
+    background-color: #0056b3;
+}
 
-/**Product details**/
+/* Home Styles */
+.home-wrapper {
+    padding: 0;
+    width: 95%;
+    margin: 0 auto;
+}
+
+/* Products Container */
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+/* Product Card */
+.product-card {
+    width: 230px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Product Image */
+.product-img {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+}
+
+.product-img img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s;
+}
+
+.product-card:hover .product-img img {
+    transform: scale(1.05);
+}
+
+/* Product Information */
+.product-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.product-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+    min-height: 50px; /* Set a minimum height to ensure uniformity */
+}
+
+.product-price {
+    font-size: 18px;
+    color: #007bff;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Details Link */
+.details-link {
+    font-size: 14px;
+    color: #007bff;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
+.details-link:hover {
+    text-decoration: underline;
+}
+
+/* Add to Cart Button */
+.addcart-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: auto; /* Push the button to the bottom */
+}
+
+.addcart-btn:hover {
+    background-color: #0056b3;
+}
+/* Media Queries */
+@media (max-width: 768px) {
+    .home-wrapper {
+        padding: 10px;
+    }
+
+    .products-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-card {
+        width: 100%;
+    }
+
+    .navbox .rightside .navlinks {
+        font-size: 12px;
+        margin: auto 5px;
+    }
+
+    .navbox .rightside .logout-btn {
+        padding: 5px 10px;
+        font-size: 10px;
+    }
+}
+
+/* Product Details */
 .product-details-container {
     display: flex;
     flex-direction: row;
@@ -242,13 +251,13 @@ h1 {
     margin-bottom: 20px;
 }
 
-.btn-container{
+.btn-container {
     display: flex;
     justify-content: space-between;
-    gap: 10px
+    gap: 10px;
 }
 
-.btn-primary, .btn-secondary{
+.btn-primary, .btn-secondary {
     flex: 1;
     text-align: center;
 }
@@ -285,3 +294,160 @@ h1 {
     background-color: #0056b3;
 }
 
+/* Signup Styles */
+.signup-container {
+    max-width: 400px;
+    margin: 100px auto;
+    background-color: #2c2c2c; /* Dark card background */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.signup-container h2 {
+    color: #00aaff; /* Tech-themed color */
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+.signup-container label {
+    display: block;
+    font-size: 16px;
+    color: #ccc; /* Light grey labels */
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.signup-container input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3a3a3a; /* Darker input background */
+    color: #fff;
+    font-size: 16px;
+}
+
+.signup-container input:focus {
+    background-color: #444; /* Focused input background */
+    border: 2px solid #00aaff; /* Focus color */
+    outline: none;
+}
+
+.signup-container .btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+}
+
+.signup-container .btn-success {
+    background-color: #00aaff; /* Tech-themed button */
+    color: #fff;
+}
+
+.signup-container .btn-success:hover {
+    background-color: #0077cc; /* Darker hover effect */
+}
+
+.signup-container .error-msg {
+    color: #ff4d4d; /* Error message color */
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.signup-container a {
+    color: #00aaff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup-container a:hover {
+    text-decoration: underline;
+}
+
+/* Login Styles */
+.login-container {
+    max-width: 400px;
+    margin: 100px auto;
+    background-color: #2c2c2c; /* Dark card background */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.login-container h2 {
+    color: #00aaff; /* Tech-themed color */
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+.login-container label {
+    display: block;
+    font-size: 16px;
+    color: #ccc; /* Light grey labels */
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3a3a3a; /* Darker input background */
+    color: #fff;
+    font-size: 16px;
+}
+
+.login-container input:focus {
+    background-color: #444; /* Focused input background */
+    border: 2px solid #00aaff; /* Focus color */
+    outline: none;
+}
+
+.login-container .btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+}
+
+.login-container .btn-success {
+    background-color: #00aaff; /* Tech-themed button */
+    color: #fff;
+}
+
+.login-container .btn-success:hover {
+    background-color: #0077cc; /* Darker hover effect */
+}
+
+.login-container .error-msg {
+    color: #ff4d4d; /* Error message color */
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.login-container a {
+    color: #00aaff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-container a:hover {
+    text-decoration: underline;
+}

@@ -9,7 +9,6 @@ export const Products = ({ user }) => {
 
   const handleAddToCart = (product) => {
     if (user) {
-      // Logic để thêm sản phẩm vào giỏ hàng
       console.log('Product added to cart:', product);
     } else {
       navigate('/login');
@@ -24,16 +23,16 @@ export const Products = ({ user }) => {
         {products.map(product => (
           <div className='product-card' key={product.ProductID}>
             <div className='product-img'>
-              <img src={product.ProductImg} alt="not found" />
+              <img src={product.ProductImg} alt={product.ProductName} />
             </div>
-            <div className='product-name'>
-              {product.ProductName}
+            <div className='product-info'>
+              <div className='product-name'>{product.ProductName}</div>
+              <div className='product-price'>
+                {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.ProductPrice)}
+              </div>
+              <Link to={`/product/${product.ProductID}`} className='details-link'>Details</Link>
+              <button className='addcart-btn' onClick={() => handleAddToCart(product)}>ADD TO CART</button>
             </div>
-            <div className='product-price'>
-              {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.ProductPrice)}
-            </div>
-            <Link to={`/product/${product.ProductID}`} className='details-link'>Details</Link>
-            <button className='addcart-btn' onClick={() => handleAddToCart(product)}>ADD TO CART</button>
           </div>
         ))}
       </div>
