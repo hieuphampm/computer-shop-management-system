@@ -1,18 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { db } from '../config/Config';
-
-export const Signup = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const navigate = useNavigate();
-  const auth = getAuth();
-
-import { auth, db } from '../config/Config';
 import Navbar from './Navbar';
 
 export const Signup = () => {
@@ -21,7 +10,7 @@ export const Signup = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate(); 
-
+  const auth = getAuth();
 
   const handleSignup = (e) => {
     e.preventDefault();
@@ -31,19 +20,11 @@ export const Signup = () => {
         Email: email,
         Password: password
       }).then(() => {
-
         setName('');
         setEmail('');
         setPassword('');
         setError('');
         navigate('/');
-
-        setName(''); 
-        setEmail('');
-        setPassword('');
-        setError('');
-        navigate('/'); 
-
       })
       .catch(err => setError(err.message));
     })

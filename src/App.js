@@ -1,20 +1,13 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
-
-// Adjust the path if `AddProducts.js` is in a different directory
-import AddProducts from './components/AddProducts'; 
-
+import AddProducts from './components/AddProducts';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Cart from './components/Cart';
 import Cashout from './components/Cashout';
-
-// Use the correct import statement depending on whether `NotFound` is a default or named export
-import NotFound from './components/NotFound'; // Default export
-// OR
-// import { NotFound } from './components/NotFound'; // Named export
-
+import NotFound from './components/NotFound';
+import ProductDetails from './components/ProductDetails'; // Ensure this import is added
 import { ProductsContextProvider } from './global/ProductsContext';
 import CartContextProvider from './global/CartContext';
 
