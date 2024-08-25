@@ -8,6 +8,7 @@ const ManageProducts = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [productName, setProductName] = useState('');
     const [productPrice, setProductPrice] = useState(0);
+    const [productDescription, setProductDescription] = useState(''); // Thêm state cho mô tả sản phẩm
     const [productImg, setProductImg] = useState(null);
     const [category, setCategory] = useState('laptop');
     const [error, setError] = useState('');
@@ -61,11 +62,13 @@ const ManageProducts = () => {
                     await addDoc(collection(db, 'Products'), {
                         ProductName: productName,
                         ProductPrice: Number(productPrice),
+                        ProductDescription: productDescription, // Đảm bảo thêm mô tả sản phẩm vào cơ sở dữ liệu
                         ProductImg: url,
                         Category: category 
                     });
                     setProductName('');
                     setProductPrice(0);
+                    setProductDescription(''); // Reset giá trị mô tả sau khi thêm sản phẩm
                     setProductImg(null);
                     setCategory('laptop'); 
                     setError('');
@@ -109,6 +112,11 @@ const ManageProducts = () => {
                 <br />
                 <input type="number" className='form-control' required
                     onChange={(e) => setProductPrice(e.target.value)} value={productPrice} />
+                <br />
+                <label htmlFor="product-description">Product Description</label> {/* Thêm trường nhập mô tả */}
+                <br />
+                <textarea className='form-control' rows="4" required
+                    onChange={(e) => setProductDescription(e.target.value)} value={productDescription}></textarea>
                 <br />
                 <label htmlFor="category">Category</label>
                 <br />

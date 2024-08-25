@@ -18,7 +18,8 @@ export const ProductsContextProvider = ({ children }) => {
                     ProductName: doc.data().ProductName,
                     ProductPrice: doc.data().ProductPrice,
                     ProductImg: doc.data().ProductImg,
-                    Category: doc.data().Category // Lưu cả thông tin Category
+                    Category: doc.data().Category,
+                    Description: doc.data().ProductDescription
                 });
             });
             setProducts(productsArray);

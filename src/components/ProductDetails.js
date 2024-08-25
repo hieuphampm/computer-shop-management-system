@@ -8,6 +8,18 @@ export const ProductDetails = () => {
     const { id } = useParams();
     const product = products.find(prod => prod.ProductID === id);
 
+    // Kiểm tra nếu product không tồn tại
+    if (!product) {
+        return (
+            <>
+                <Navbar user={null} />
+                <div className="product-details-container">
+                    <h2>Product Not Found</h2>
+                </div>
+            </>
+        );
+    }
+
     return (
         <>
             <Navbar user={null} />
@@ -19,6 +31,7 @@ export const ProductDetails = () => {
                     <h2 className='product-title'>{product.ProductName}</h2>
                     <p className='product-price'>Price: {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.ProductPrice)}</p>
                     <p className='product-category'>Category: {product.Category}</p>
+                    <p className='product-description'>Description: {product.Description}</p>
                     <div className='btn-container'>
                         <button className="btn-primary">Add to Cart</button>
                         <button className="btn-secondary">Buy Now</button>
