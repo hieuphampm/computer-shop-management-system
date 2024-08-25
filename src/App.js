@@ -18,7 +18,7 @@ export class App extends Component {
         <BrowserRouter>
           <Routes>
             <Route exact path="/" element={<Home />} />
-            <Route path="/manageproduct" element={<ManageProducts />} />
+            <Route path="/employee/manageproducts" element={<ManageProducts />} />
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
