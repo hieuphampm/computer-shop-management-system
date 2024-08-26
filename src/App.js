@@ -10,6 +10,8 @@ import ProductDetails from './components/ProductDetails'; // Ensure this import 
 import { ProductsContextProvider } from './global/ProductsContext';
 import CartContextProvider from './global/CartContext';
 import ManageProducts from './components/AdminPanel/ManageProducts';
+import Dashboard from './components/AdminPanel/Dashboard';
+
 
 export class App extends Component {
   render() {
@@ -18,6 +20,7 @@ export class App extends Component {
         <BrowserRouter>
           <Routes>
             <Route exact path="/" element={<Home />} />
+            <Route path="/Admin/Dashboard" element={<Dashboard/>} />
             <Route path="/employee/manageproducts" element={<ManageProducts />} />
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="/signup" element={<Signup />} />

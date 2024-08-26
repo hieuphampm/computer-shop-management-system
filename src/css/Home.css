@@ -172,31 +172,6 @@ body {
 .addcart-btn:hover {
     background-color: #0056b3;
 }
-/* Media Queries */
-@media (max-width: 768px) {
-    .home-wrapper {
-        padding: 10px;
-    }
-
-    .products-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .product-card {
-        width: 100%;
-    }
-
-    .navbox .rightside .navlinks {
-        font-size: 12px;
-        margin: auto 5px;
-    }
-
-    .navbox .rightside .logout-btn {
-        padding: 5px 10px;
-        font-size: 10px;
-    }
-}
 
 /* Product Details */
 .product-details-container {
@@ -251,6 +226,13 @@ body {
     margin-bottom: 20px;
 }
 
+.product-description {  /* Thêm mô tả sản phẩm */
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
 .btn-container {
     display: flex;
     justify-content: space-between;
@@ -294,86 +276,103 @@ body {
     background-color: #0056b3;
 }
 
-/* Signup Styles */
-.signup-container {
-    max-width: 400px;
-    margin: 100px auto;
-    background-color: #2c2c2c; /* Dark card background */
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    text-align: center;
+/* Manage Products Form */
+.form-group {
+    margin-bottom: 15px;
 }
 
-.signup-container h2 {
-    color: #00aaff; /* Tech-themed color */
-    margin-bottom: 30px;
-    font-size: 28px;
-}
-
-.signup-container label {
+.form-group label {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 5px;
     display: block;
-    font-size: 16px;
-    color: #ccc; /* Light grey labels */
-    margin-bottom: 10px;
-    text-align: left;
 }
 
-.signup-container input {
+.form-group input,
+.form-group select,
+.form-group textarea {
     width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
-    border: none;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #3a3a3a; /* Darker input background */
-    color: #fff;
-    font-size: 16px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
 }
 
-.signup-container input:focus {
-    background-color: #444; /* Focused input background */
-    border: 2px solid #00aaff; /* Focus color */
+.form-group textarea {
+    resize: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #007bff;
     outline: none;
 }
 
-.signup-container .btn {
-    width: 100%;
-    padding: 15px;
+/* Button Styles for Manage Products */
+.btn-success {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1rem;
     border: none;
     border-radius: 5px;
-    font-size: 18px;
-    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 20px;
+    transition: background-color 0.3s ease;
 }
 
-.signup-container .btn-success {
-    background-color: #00aaff; /* Tech-themed button */
-    color: #fff;
+.btn-success:hover {
+    background-color: #218838;
 }
 
-.signup-container .btn-success:hover {
-    background-color: #0077cc; /* Darker hover effect */
-}
-
-.signup-container .error-msg {
-    color: #ff4d4d; /* Error message color */
-    font-size: 14px;
+/* Search Container */
+.search-container {
     margin-bottom: 20px;
 }
 
-.signup-container a {
-    color: #00aaff;
-    text-decoration: none;
-    font-weight: bold;
+.search-container input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
-.signup-container a:hover {
-    text-decoration: underline;
+.search-container input:focus {
+    outline: none;
+    border-color: #007bff;
 }
 
-/* Login Styles */
+/* Media Queries */
+@media (max-width: 768px) {
+    .home-wrapper {
+        padding: 10px;
+    }
+
+    .products-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-card {
+        width: 100%;
+    }
+
+    .navbox .rightside .navlinks {
+        font-size: 12px;
+        margin: auto 5px;
+    }
+
+    .navbox .rightside .logout-btn {
+        padding: 5px 10px;
+        font-size: 10px;
+    }
+}
+
+/* Signup and Login Styles (if applicable) */
+.signup-container,
 .login-container {
     max-width: 400px;
     margin: 100px auto;
@@ -384,12 +383,14 @@ body {
     text-align: center;
 }
 
+.signup-container h2,
 .login-container h2 {
     color: #00aaff; /* Tech-themed color */
     margin-bottom: 30px;
     font-size: 28px;
 }
 
+.signup-container label,
 .login-container label {
     display: block;
     font-size: 16px;
@@ -398,6 +399,7 @@ body {
     text-align: left;
 }
 
+.signup-container input,
 .login-container input {
     width: 100%;
     padding: 12px;
@@ -409,12 +411,14 @@ body {
     font-size: 16px;
 }
 
+.signup-container input:focus,
 .login-container input:focus {
     background-color: #444; /* Focused input background */
     border: 2px solid #00aaff; /* Focus color */
     outline: none;
 }
 
+.signup-container .btn,
 .login-container .btn {
     width: 100%;
     padding: 15px;
@@ -427,27 +431,32 @@ body {
     margin-top: 20px;
 }
 
+.signup-container .btn-success,
 .login-container .btn-success {
     background-color: #00aaff; /* Tech-themed button */
     color: #fff;
 }
 
+.signup-container .btn-success:hover,
 .login-container .btn-success:hover {
     background-color: #0077cc; /* Darker hover effect */
 }
 
+.signup-container .error-msg,
 .login-container .error-msg {
     color: #ff4d4d; /* Error message color */
     font-size: 14px;
     margin-bottom: 20px;
 }
 
+.signup-container a,
 .login-container a {
     color: #00aaff;
     text-decoration: none;
     font-weight: bold;
 }
 
+.signup-container a:hover,
 .login-container a:hover {
     text-decoration: underline;
 }

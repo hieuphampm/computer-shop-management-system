@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { ProductsContext } from '../global/ProductsContext';
 import { Link, useNavigate } from 'react-router-dom';
-import { auth } from '../config/Config';
 
 export const Products = ({ user }) => {
   const { products } = useContext(ProductsContext);
