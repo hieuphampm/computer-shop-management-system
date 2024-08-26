@@ -6,7 +6,7 @@ import Login from './components/Login';
 import Cart from './components/Cart';
 import Cashout from './components/Cashout';
 import NotFound from './components/NotFound';
-import ProductDetails from './components/ProductDetails'; // Ensure this import is added
+import ProductDetails from './components/ProductDetails'; 
 import { ProductsContextProvider } from './global/ProductsContext';
 import CartContextProvider from './global/CartContext';
 import ManageProducts from './components/AdminPanel/ManageProducts';
@@ -20,7 +20,7 @@ export class App extends Component {
         <BrowserRouter>
           <Routes>
             <Route exact path="/" element={<Home />} />
-            <Route path="/Admin/Dashboard" element={<Dashboard/>} />
+            <Route path="/admin/dashboard" element={<Dashboard/>} />
             <Route path="/employee/manageproducts" element={<ManageProducts />} />
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="/signup" element={<Signup />} />

@@ -460,3 +460,8 @@ body {
 .login-container a:hover {
     text-decoration: underline;
 }
+
+.signup-container span,
+.login-container span {
+    color: #88c9e9;
+}

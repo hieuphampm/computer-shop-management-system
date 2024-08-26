@@ -12,7 +12,7 @@ export const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const auth = getAuth(); // Initialize auth
+  const auth = getAuth(); 
 
   const login = (e) => {
     e.preventDefault();
